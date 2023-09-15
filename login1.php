@@ -8,6 +8,7 @@ if (isset($_POST['submit'])){
     if(mysqli_num_rows($data)>0){
         $row=mysqli_fetch_assoc($data);
         $type=$row['type'];
+        $_SESSION['login_id']=$row['login_id'];
         if($type=="0"){
             echo header("location:index3.php");
         }
@@ -17,7 +18,6 @@ if (isset($_POST['submit'])){
         if($type=="2"){
             echo header("location:college.php");
         }
-        $session==['not'];
     }
 }
 function data_uri ($file, $mime) {

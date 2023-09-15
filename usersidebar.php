@@ -52,6 +52,11 @@
         <span>Add Product</span></a>
 </li>
 <li class="nav-item">
+    <a class="nav-link" href="userviewproduct.php">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>View my product</span></a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href="buy.php">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Buy Product</span></a>

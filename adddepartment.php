@@ -3,9 +3,10 @@ include "talenthubconnect.php";
 session_start();
 if (isset($_POST['submit'])){ 
     $dname=$_POST['department_name'];
-    $cname=$_POST['college_name'];
-    mysqli_query($con,"insert into department(department_name,college_name)values('$dname','$cname')");
-} 
+    mysqli_query($con,"insert into department(department_name,college_name)values('$dname')");
+  $data=  mysqli_query($con,"select * from college where login='$login'");
+ 
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +36,8 @@ if (isset($_POST['submit'])){
                                 <h1 class="h4 text-primary mb-4">DEPARTMENT</h1>
                             </div>
                             <form class="user" method="post">
-                            <div class="form-group row">
-                                    <input type="text" name="college_name" placeholder="COLLEGE NAME" class="form-control form-control-user shadow-lg my-2"> 
+                            <div class="form-group row">                             
+                                    <td><?php echo $row['college_name']?></td>
                                 </div>
                                 <div class="form-group row">
                                     <input type="text" name="department_name" placeholder="DEPARTMENT NAME" class="form-control form-control-user shadow-lg my-2"> 
