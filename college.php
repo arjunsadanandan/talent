@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "talenthubconnect.php";
 $data=mysqli_query($con,"select * from college");
 ?>
@@ -227,7 +228,7 @@ include "collegesidebar.php";
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-primary">ARTSCOLLEGE</h1>
+                    <h1 class="h3 mb-4 text-primary"><?php echo "HI.....". $_SESSION["u_name"]?></h1>
                     </div>
                         <div class="card-body">
                             <div class="table-responsive shadow-lg my-2">
@@ -246,7 +247,7 @@ include "collegesidebar.php";
                                         <tr>
                                         <tr>
                                             <td><?php echo$row['college_name']?></td>
-                                            <td><a href="students.php?id=<?php echo$row['college_name']?><?php echo$row['college_id']?>" name="submit" type="button" class="btn btn-outline-dark shadow-lg my-2">view</a></td>
+                                            <td><a href="collegevie.php?id=<?php echo$row['college_id']?>" name="submit" type="button" class="btn btn-outline-dark shadow-lg my-2">view</a></td>
                                         </tr>
                                                <?php
                                             }

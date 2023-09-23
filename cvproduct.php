@@ -245,7 +245,6 @@ function data_uri ($file, $mime) {
                                             <th>CATEGORY</th>
                                             <th>PRICE</th>
                                             <th>PRODUCT PIC</th>
-                                            <th>STATUS</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -259,31 +258,6 @@ function data_uri ($file, $mime) {
                                                     <td><?php echo$row['category_name']?></td>
                                                     <td><?php echo$row['price']?></td>
                                                     <td><img src="img/<?php echo$row['image']?>"width="80px" hieght="40px"class="shadow-lg my-2"></td>
-                                                    <td>
-                                                        <?php
-                                                        if($row['status']==0){
-                                                            ?>
-                                                        <a href="approveproduct.php?id=<?php echo$row["product_id"]?>" name="submit" class="btn btn-outline-primary shadow-lg my-2" type="button">APPROVE</a>
-                                                        <a href="reject.php?id=<?php echo$row["product_id"]?>" name="submit" class="btn btn-outline-primary shadow-lg my-2" type="button">REJECT</a>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                         <?php
-                                                        if($row['status']==1){
-                                                            ?>
-                                                        <a href="approveproduct.php?id=<?php echo$row["product_id"]?>" name="submit" class="btn btn-outline-success shadow-lg my-2" type="button">APPROVED</a>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                        <?php
-                                                        if($row['status']==2){
-                                                            ?>
-                                                        <a href="reject.php?id=<?php echo$row['product_id']?>" name="submit" class="btn btn-outline-danger shadow-lg my-2" type="button">REJECTED</a>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                     
-                                                    </td>       
                                                 </tr>
                                                     <?php
                                                 }

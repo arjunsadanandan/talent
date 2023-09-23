@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "talenthubconnect.php";
 $sid=$_GET['id'];
 $data= mysqli_query($con,"select * from students where student_id='$sid'");
@@ -8,12 +9,12 @@ $email=$row['email'];
 if(isset($_POST['update'])){
     $depart=$_POST['department_name'];
     $email=$_POST['email'];
-   $sql= mysqli_query($con,"update students set department_name='$depart',email='$email' where student_id='$sid'");
-    $row=(mysqli_fetch_assoc($sql));
+   $data= mysqli_query($con,"update students set department_name='$depart',email='$email' where student_id='$sid'");
+    $row=(mysqli_fetch_assoc($data));
     if($row){
-        header("location:adminstudent.php");
+       header("location:adminstudent.php");
     }
-    } 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -266,10 +267,10 @@ if(isset($_POST['update'])){
                                                 <tr>
                                                     <td><?php echo$row['student_name']?></td>
                                                     <td><?php echo$row['college_name']?></td>
-                                                    <td><input type="text" name="department_name" class="form-control form-control-user shadow-lg my-2"></td>
-                                                    <td><input type="text" name="email" class="form-control form-control-user shadow-lg my-2"td>
-                                                   <td><a href="updatest.php?id=<?php echo$row['student_id']?>" name="update" class="form-control form-control-user shadow-lg my-2" type="button">UPDATE</a></td>
-                                                    <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">Delete</a></td>
+                                                    <td><?php echo$row['department_name']?></td>
+                                                    <td><?php echo$row['email']?></td>
+                                                    <td><a href="stupdate1.php?id=<?php echo$row['student_id']?>" name="update"  class="btn btn-outline-primary shadow-lg my-2">Edit</a></td>
+                                                    <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-danger shadow-lg my-2">Delete</a></td>
                                                 </tr>
                                                     <?php
                                                 }

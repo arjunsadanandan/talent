@@ -1,7 +1,7 @@
 <?php
 include "talenthubconnect.php";
 $bid=$_GET['id'];
-$data= mysqli_query($con,"select * from payment where payment_id='$bid'");
+$data= mysqli_query($con,"select * from product where product_id='$bid'");
 function data_uri ($file, $mime) {
     $contents = file_get_contents ($file);
     $base64 = base64_encode ($contents);
@@ -237,6 +237,7 @@ function data_uri ($file, $mime) {
                     </div>
                         <div class="card-body">
                             <div class="table-responsive shadow-lg my-2">
+                                <form method="post">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -257,7 +258,7 @@ function data_uri ($file, $mime) {
                                                     <td><?php echo$row['student_name']?></td>
                                                     <td><?php echo$row['price']?></td>
                                                     <td><img src="img/<?php echo$row['image']?>"width="80px" hieght="40px"class="shadow-lg my-2"></td>
-                                                    <td><a href="buy2.php" name="submit"class="btn btn-outline-success shadow-lg my-2">ORDER NOW</a></td>
+                                                    <td><a href="productstatus.php?id=<?php echo$row['product_id']?>" name="submit"class="btn btn-outline-success shadow-lg my-2">ORDER NOW</a></td>
                                                 </tr>
                                                     <?php
                                                 }
@@ -265,6 +266,7 @@ function data_uri ($file, $mime) {
                                             </tr>
                                     </tbody>
                                 </table>
+                                </form>
                             </div>
                         </div>
                     </div>

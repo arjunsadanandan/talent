@@ -1,6 +1,8 @@
 <?php
+session_start();
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from product where status='1'");
+$pid=$_SESSION["login_id"];
+$data= mysqli_query($con,"select * from product where login='$pid'");
 function data_uri ($file, $mime) {
     $contents = file_get_contents ($file);
     $base64 = base64_encode ($contents);
@@ -245,6 +247,7 @@ function data_uri ($file, $mime) {
                                             <th>CATEGORY</th>
                                             <th>PRICE</th>
                                             <th>PRODUCT PIC</th>
+                                            <th>UPDATE</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -258,6 +261,7 @@ function data_uri ($file, $mime) {
                                                     <td><?php echo$row['category_name']?></td>
                                                     <td><?php echo$row['price']?></td>
                                                     <td><img src="img/<?php echo$row['image']?>"width="60px" hieght="30px"></td>
+                                                    <td><a href="cvpupdate.php?id=<?php echo$row['product_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">UPDATE</td>
                                                 </tr>
                                                     <?php
                                                 }

@@ -1,6 +1,6 @@
 <?php
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from students where status='1'");
+$data= mysqli_query($con,"select * from students");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +241,6 @@ $data= mysqli_query($con,"select * from students where status='1'");
                                             <th>COLLEGE </th>
                                             <th>DEPARTMENT </th>
                                             <th>EMAIL</th>
-                                            <th>UPDATE</th>
                                             <th>DELETE</th>
                                         </tr>
                                     </thead>
@@ -255,8 +254,7 @@ $data= mysqli_query($con,"select * from students where status='1'");
                                                     <td><?php echo$row['college_name']?></td>
                                                     <td><?php echo$row['department_name']?></td>
                                                     <td><?php echo$row['email']?></td>
-                                                    <td><a href="stupdate1.php?id=<?php echo$row['student_id']?>" name="submit"  class="btn btn-outline-primary shadow-lg my-2">Update</a></td>
-                                                    <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">Delete</a></td>
+                                                    <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-danger shadow-lg my-2">Delete</a></td>
                                                 </tr>
                                                     <?php
                                                 }

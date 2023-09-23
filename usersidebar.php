@@ -17,25 +17,9 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 <!-- Heading -->
-<div class="sidebar-heading">
-    Interface
-</div>
+
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>login</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="college.php">college</a>
-            <a class="collapse-item" href="admin.php">admin</a>
-            <a class="collapse-item" href="user.php">user</a>
-        </div>
-    </div>
-</li>
+
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -71,6 +55,7 @@
         <i class="fas fa-fw fa-table"></i>
         <span>View notification</span></a>
 </li>
+<a href="logout2.php" name="submit" type="button" class="btn btn-outline-primary text-white shadow-lg my-3">LOG OUT</a>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Sidebar Toggler (Sidebar) -->

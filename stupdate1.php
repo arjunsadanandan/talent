@@ -1,8 +1,20 @@
 <?php
 include "talenthubconnect.php";
 $sid=$_GET['id'];
-$data= mysqli_query($con,"select * from students where student_id='$sid'");
-
+$data=mysqli_query($con,"select * from students where student_id='$sid'");
+$row=(mysqli_fetch_assoc($data));
+$depart=$row['department_name'];
+$email=$row['email'];
+if(isset($_POST["update"])){
+    $depart=$_POST['department_name'];
+    $email=$_POST['email'];
+    $data=mysqli_query($con,"update students set department_name='$depart',email='$email' where student_id='$sid'");
+    if($data){
+       echo "update succesfully";
+    }else{
+        die(mysqli_die($con));
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -233,6 +245,7 @@ $data= mysqli_query($con,"select * from students where student_id='$sid'");
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-1 text-primary">STUDENTS</h1>
+                    <form class="user" method="post" enctype="multipart/form-data">
                     </div>
                         <div class="card-body">
                             <div class="table-responsive shadow-lg my-2">
@@ -249,27 +262,24 @@ $data= mysqli_query($con,"select * from students where student_id='$sid'");
                                     </thead>
                                     <tfoot>
                                             <tr>
-                                                <?php
-                                                while($row=mysqli_fetch_assoc($data)){
-                                                    ?>
-                                                <tr>
-                                                    <td><?php echo$row['student_name']?></td>
-                                                    <td><?php echo$row['college_name']?></td>
-                                                    <td><input type="text" name="department_name" class="form-control form-control-user shadow-lg my-2"></td>
-                                                    <td><input type="text" name="email" class="form-control form-control-user shadow-lg my-2"td>
-                                                   <td><a href="updatest.php?id=<?php echo$row['student_id']?>" name="update" class="btn btn-outline-success shadow-lg my-2">UPDATE</a></td>
-                                                    <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">Delete</a></td>
-                                                </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </tr>
+                                                <td><?php echo$row['student_name']?></td>
+                                                <td><?php echo$row['college_name']?></td>
+                                                <td><input type="text" name="department_name" class="form-control form-control-user shadow-lg my-2" value="<?php echo$depart?>"></td>
+                                                <td><input type="text" name="email" class="form-control form-control-user shadow-lg my-2"value="<?php echo$email?>"></td>
+                                                <td><a href="" name="update" class="btn btn-outline-success shadow-lg my-2">UPDATE</a></td>
+                                                <td><a href="asdelete.php?id=<?php echo$row['student_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">Delete</a></td>
+                                            </tr>  
+                                           </div>  
                                     </tbody>
                                 </table>
+                         
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
+            </div>
+         </div>
+    </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->

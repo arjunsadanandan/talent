@@ -237,6 +237,7 @@ $data= mysqli_query($con,"select * from category ");
                                         <tr>                                    
                                             <th>CATEGORY ID</th>
                                             <th>CATEGORY NAME</th>
+                                            <th>DELETE</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -247,6 +248,7 @@ $data= mysqli_query($con,"select * from category ");
                                                 <tr> 
                                                     <td><?php echo$row['category_id']?></td>
                                                     <td><?php echo$row['category_name']?></td>
+                                                    <td><a href="catedelete.php?id=<?php echo$row['category_id']?>" name="submit" type="button" class="btn btn-outline-danger shadow-lg my-2">DELETE</a></td>
                                                 </tr>
                                                     <?php
                                                 }

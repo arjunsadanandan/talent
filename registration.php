@@ -9,7 +9,7 @@ if (isset($_POST['submit'])){
     $place=$_POST['place'];
     mysqli_query($con,"insert into login(uname,password,type)values('$uname','$pass','2')");
     $log=mysqli_insert_id($con);
-    mysqli_query($con,"insert into college(college_name,uname,password,email,mobile,place,status,login)values('$college','$uname','$pass','$email','$mobile','$place','2','$log')");
+    mysqli_query($con,"insert into college(college_name,uname,password,email,mobile,place,status,login)values('$college','$uname','$pass','$email','$mobile','$place','0','$log')");
     header("location:index.php");
 } 
 function data_uri ($file,$mime) {
@@ -48,34 +48,34 @@ function data_uri ($file,$mime) {
                             <form class="user" method="post" enctype="multipart/form-data">
                                 <div class="form-group row" >
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="COLLEGE NAME" name="college_name">
+                                        placeholder="COLLEGE NAME" name="college_name" required>
                                     </div>
                                 <div class="form-group row" >
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="USER NAME" name="uname">
+                                        placeholder="USER NAME" name="uname" required>
                                     </div>  
                                 <div class="form-group row" >
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="PASSWORD" name="password">
+                                        placeholder="PASSWORD" name="password" required>
                                     </div>       
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="EMAIL" name="email">
+                                        placeholder="EMAIL" name="email" required>
                                 </div>
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="MOBLE" name="mobile">
+                                        placeholder="MOBLE" name="mobile" required>
                                 </div>
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="PLACE" name="place">
+                                        placeholder="PLACE" name="place" required>
                                 </div> 
                                     <tr>
                                         <td>
-                                            <button name="submit" class="btn btn-outline-primary shadow-lg my-2">REG</button>
+                                            <button name="submit" class="btn text-white shadow-lg my-2">REG</button>
                                         </td>
                                         <td>
-                                            <a href="index.php" name="submit" class="btn btn-outline-primary shadow-lg my-2">Back</a>  
+                                            <a href="index.php" name="submit" class="btn text-white shadow-lg my-2">BACK</a>  
                                         </td>
                                     </tr>
                                 </div>

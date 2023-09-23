@@ -1,4 +1,6 @@
 <?php
+session_start();
+include "talenthubconnect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>college Dashboard</title>
+    <title>ADMIN DASHBOARD</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -226,7 +228,11 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">
+                            <?php
+                            echo "HI.....".  $_SESSION['u_name'];
+                            ?>
+                       </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>

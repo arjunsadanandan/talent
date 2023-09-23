@@ -1,6 +1,9 @@
 <?php
+session_start();
 include "talenthubconnect.php";
 $sql=mysqli_query($con,'select * from college');
+$row=mysqli_fetch_assoc($sql);
+$_SESSION['login_id']=$row['login'];
 $data=mysqli_query($con,"select * from department");
 if (isset($_POST['submit'])){
     $student=$_POST['student_name'];
@@ -50,28 +53,34 @@ function data_uri ($file, $mime) {
                             <form class="user" method="post" enctype="multipart/form-data">
                             <div class="form-group row" >
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="STUDENT NAME" name="student_name">
+                                        placeholder="STUDENT NAME" name="student_name" required>
                             </div>
                             <div class="form-group row" >
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="PASSWORD" name="pass">
+                                        placeholder="PASSWORD" name="pass" required>
                             </div>
-                                <div class="form-group row form-control form-control-user shadow-lg my-2">
+                                <div class="form-group row">
                                     <tr>
-                                        <?php
-                                        while($row=mysqli_fetch_assoc($sql)){
-                                            ?>
-                                            <td><?php echo$row['college_id']?></td>
-                                            <?php
-                                        }
-                                        ?>
+                                        <td>
+                                            <label name="college_name" class="form-control form-control-user shadow-lg my-2">COLLEGE NAME
+                                                <select name="college_name" class="text-primary" required>
+                                                    <?php
+                                                    while($row=mysqli_fetch_assoc($sql)){
+                                                        ?>
+                                                        <option value="<?php echo$row['college_name']?>"><?php echo$row['college_name']?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </label>
+                                        </td>
                                     </tr>   
                                 </div>
                                 <div class="form-group row">
                                     <tr>
                                         <td>
                                             <label for name="department_id" class="form-control form-control-user shadow-lg my-2">DEPARTMENT NAME
-                                            <select name="department_name"class="text-primary">
+                                            <select name="department_name"class="text-primary" required>
                                                 <?php
                                                 while($rowone=mysqli_fetch_assoc($data)){
                                                     ?>
@@ -86,26 +95,26 @@ function data_uri ($file, $mime) {
                                 </div>
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="EMAIL" name="email">
+                                        placeholder="EMAIL" name="email" required>
                                 </div> 
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="MOBILE" name="mobile">
+                                        placeholder="MOBILE" name="mobile" required>
                                 </div>
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="AGE" name="age">
+                                        placeholder="AGE" name="age" required>
                                 </div>     
                                     <tr>
                                         <td>
-                                            <button name="submit" class="btn btn-outline-primary shadow-lg my-2">Add</button>               
-                                            <a href="college.php" name="submit" class="btn btn-outline-primary shadow-lg my-2">Back</a>  
+                                            <button name="submit" class="btn text-white shadow-lg my-2">ADD</button>               
+                                            <a href="college.php" name="submit" class="btn text-white shadow-lg my-2">BACK</a>  
                                         </td>
                                     </tr>
                                 </div>
                             </form>
                             <div class="row p-3 bg-primary">
-                                <img src="img/126-1269278_add-student-icon-png-groups-first-baptist-cleveland-removebg-preview (1).png"width="800px"height="600px">
+                                <img src="img/126-1269278_add-student-icon-png-groups-first-baptist-cleveland-removebg-preview (1).png"width="680px"height="600px">
                             </div>     
                         </div>
                     </div>

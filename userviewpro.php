@@ -1,56 +1,47 @@
 <?php
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from students join college on college.college_id=students.college_id join department");
+$data= mysqli_query($con,"select * from product");
+function data_uri ($file, $mime) {
+    $contents = file_get_contents ($file);
+    $base64 = base64_encode ($contents);
+    return ('data:' . $mime . ';base64,' . $base64);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Color Utilities</title>
-
+    <title>ALLPRODUCT</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
-
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <?php
-        include "adminsidebar.php";
+        include "usersidebar.php";
         ?>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -64,10 +55,8 @@ $data= mysqli_query($con,"select * from students join college on college.college
                             </div>
                         </div>
                     </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -91,7 +80,6 @@ $data= mysqli_query($con,"select * from students join college on college.college
                                 </form>
                             </div>
                         </li>
-
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -208,14 +196,12 @@ $data= mysqli_query($con,"select * from students join college on college.college
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-
                         <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ARJUNSADANANDAN</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -241,32 +227,26 @@ $data= mysqli_query($con,"select * from students join college on college.college
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">Students view</h1>
-   
+                    <h1 class="h3 mb-1 text-primary">PRODUCT</h1>
                     </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive shadow-lg my-2">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            
-                                            <th>College_name</th>
-                                            <th>Department_name</th>
-                                            <th>Student_Name</th>
-                                            <th>Email</th>
-                                            <th>Update</th>
-                                            <th>Delete</th>
-                                           
+                                            <th>STUDENT</th>
+                                            <th>PRODUCT</th>
+                                            <th>CATEGORY</th>
+                                            <th>PRICE</th>
+                                            <th>PRODUCT PIC</th>
+                                            <th>UPDATE</th>
+                                            <th>DELETE</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -275,32 +255,27 @@ $data= mysqli_query($con,"select * from students join college on college.college
                                                 while($row=mysqli_fetch_assoc($data)){
                                                     ?>
                                                 <tr>
-                                                    <td><?php echo$row['college_name']?></td>
-                                                    <td><?php echo$row['department_name']?></td>
-                                                    <td><?php echo$row['name']?></td>
-                                                    <td><?php echo$row['email']?></td>
-                                                    <td><a href="studentupdate.php?id=<?php echo$row['department_id']?>" name="submit" class="btn btn-outline-primary">Update</button></td>
-                                                    <td><a href="studentdelete.php?id=<?php echo$row['college_id']?>" name="delete" class="btn btn-outline-primary">Delete</a></td>
+                                                    <td><?php echo$row['student_name']?></td>
+                                                    <td><?php echo$row['product_name']?></td>
+                                                    <td><?php echo$row['category_name']?></td>
+                                                    <td><?php echo$row['price']?></td>
+                                                    <td><img src="img/<?php echo$row['image']?>"width="90px" hieght="90px" class="shadow-lg my-2"></td>
+                                                    <td><a href="cvpupdate.php?id=<?php echo$row['product_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">UPDATE</td>
+                                                    <td><a href="cvpdelete.php?id=<?php echo$row['product_id']?>" name="del" class="btn btn-outline-danger shadow-lg my-2"type="button">DELETE</td>
                                                 </tr>
                                                     <?php
                                                 }
                                                 ?>
-                                            
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-
+                    </div> 
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
-
-
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -321,7 +296,6 @@ $data= mysqli_query($con,"select * from students join college on college.college
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -341,17 +315,12 @@ $data= mysqli_query($con,"select * from students join college on college.college
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
 </body>
-
 </html>

@@ -21,21 +21,6 @@
     Interface
 </div>
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>login</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="index3.php">admin</a>
-            <a class="collapse-item" href="index2.php">user</a>
-            <a class="collapse-item" href="index1.php">college</a>
-        </div>
-    </div>
-</li>
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -75,9 +60,9 @@
 </li>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="adminapproved.php">
+    <a class="nav-link" href="adminallproduct.php">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>View Approved Product</span></a>
+        <span>View all Product</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
@@ -91,6 +76,7 @@
         <i class="fas fa-fw fa-table"></i>
         <span>View Notification</span></a>
 </li>
+<a href='logout.php' name="submit" type="button" class="btn btn-outline-primary text-white shadow-lg my-3">LOG OUT</a>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Sidebar Toggler (Sidebar) -->

@@ -1,11 +1,8 @@
 <?php
+session_start();
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from product");
-function data_uri ($file, $mime) {
-    $contents = file_get_contents ($file);
-    $base64 = base64_encode ($contents);
-    return ('data:' . $mime . ';base64,' . $base64);
-}
+$log=$_GET['id'];
+$data= mysqli_query($con,"select * from college where login='$log'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +12,7 @@ function data_uri ($file, $mime) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB college - view product</title>
+    <title>COLLEGE</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -29,7 +26,7 @@ function data_uri ($file, $mime) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include "adminsidebar.php";
+        include "collegesidebar.php";
         ?>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -130,7 +127,6 @@ function data_uri ($file, $mime) {
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
-
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -233,20 +229,18 @@ function data_uri ($file, $mime) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-primary">PRODUCT</h1>
+                    <h1 class="h3 mb-1 text-gray-800">COLLEGE</h1>  
                     </div>
                         <div class="card-body">
-                            <div class="table-responsive shadow-lg my-2">
+                            <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>STUDENT</th>
-                                            <th>PRODUCT</th>
-                                            <th>CATEGORY</th>
-                                            <th>PRICE</th>
-                                            <th>PRODUCT PIC</th>
-                                            <th>APPROVED</th>
-                                            <th>DELETE</th>
+                                        <tr>                                        
+                                            <th>COLLEGE NAME</th>
+                                            <th>EMAIL</th>
+                                            <th>MOBILE</th>
+                                            <th>PLACE</th>
+                                            <th>STATUS</th>                           
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -255,24 +249,20 @@ function data_uri ($file, $mime) {
                                                 while($row=mysqli_fetch_assoc($data)){
                                                     ?>
                                                 <tr>
-                                                    <td><?php echo$row['student_name']?></td>
-                                                    <td><?php echo$row['product_name']?></td>
-                                                    <td><?php echo$row['category_name']?></td>
-                                                    <td><?php echo$row['price']?></td>
-                                                    <td><img src="img/<?php echo$row['image']?>" height="40px" width="80px"class="shadow-lg my-2"></td>
-                                                    <td><a href="collegeapprove.php?id=<?php echo$row['status']?>" name="submit" class="btn btn-outline-success shadow-lg my-2"type="button">APPROVED</a></td>
-                                                    <td><a href="cdelete.php?id=<?php echo$row['product_id']?>" name="del" class="btn btn-outline-danger shadow-lg my-2"type="button">DELETE</a></td>
+                                                    <td><?php echo$row['college_name']?></td>
+                                                    <td><?php echo$row['email']?></td>
+                                                    <td><?php echo$row['mobile']?></td>
+                                                    <td><?php echo$row['place']?></td>
+                                                    <td><?php echo$row['status']?></td>
                                                 </tr>
                                                     <?php
                                                 }
-                                                ?>
-                                            </tr>
+                                                ?>                                           
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <a href="admin.php" name="submit" class="btn btn-outline-primary">back</a>   
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -286,13 +276,10 @@ function data_uri ($file, $mime) {
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

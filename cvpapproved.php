@@ -1,6 +1,6 @@
 <?php
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from product where status='2'");
+$data= mysqli_query($con,"select * from product where status='1'");
 function data_uri ($file, $mime) {
     $contents = file_get_contents ($file);
     $base64 = base64_encode ($contents);

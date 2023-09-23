@@ -8,6 +8,12 @@ function data_uri ($file, $mime) {
     $base64 = base64_encode ($contents);
     return ('data:' . $mime . ';base64,' . $base64);
 }
+if(isset($_POST["update"])){
+    $product=$_POST['product_name'];
+    $price=$_POST['price'];
+    $data=mysqli_query($con,"update product set product_name='$product',price='$price' where product_id='$pid'");
+    header("location:userviewpro.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +37,7 @@ function data_uri ($file, $mime) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include "collegesidebar.php";
+        include "usersidebar.php";
         ?>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -239,6 +245,7 @@ function data_uri ($file, $mime) {
                     </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <form method="post">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -273,7 +280,7 @@ function data_uri ($file, $mime) {
                                                     </td>
                                                     <td><input type="text" class="form-control form-control-user shadow-lg my-2" placeholder="PRICE" name='price'></td>
                                                     <td><img src="img/<?php echo$row['image']?>"width="90px" hieght="90px"></td>
-                                                    <td><a href="cvpupage.php?id=<?php echo$row['product_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2">UPDATE</td>
+                                                    <td><button name="update" class="btn btn-outline-success shadow-lg my-2">Done</button></td>
                                                 </tr>
                                                     <?php
                                                 }
@@ -281,6 +288,7 @@ function data_uri ($file, $mime) {
                                             </tr>
                                     </tbody>
                                 </table>
+                            </form>
                             </div>
                         </div>
                     </div>

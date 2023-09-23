@@ -1,11 +1,24 @@
 <?php
-include "talenthubconnect.php";
 session_start();
+include "talenthubconnect.php";
+$data=mysqli_query($con,"select * from college");
+$row=mysqli_fetch_assoc($data);
+$_SESSION['login_id']=$row['college_name'];
+$college= $_SESSION['login_id'];
 if (isset($_POST['submit'])){ 
+    $college=$_POST['college_name'];
     $dname=$_POST['department_name'];
-    mysqli_query($con,"insert into department(department_name,college_name)values('$dname')");
-  $data=  mysqli_query($con,"select * from college where login='$login'");
- 
+   $data= mysqli_query($con,"insert into department(department_name,college_name)values('$dname','$college')");
+      if($data){
+         echo "insert succesfully";
+      }else{
+          die(mysqli_die($con));
+      }
+  }
+  function data_uri ($file, $mime) {
+    $contents = file_get_contents ($file);
+    $base64 = base64_encode ($contents);
+    return ('data:' . $mime . ';base64,' . $base64);
   }
 ?>
 <!DOCTYPE html>
@@ -30,14 +43,18 @@ if (isset($_POST['submit'])){
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
-                <div class="row">                   
+                <div class="row">
+                <div class="col-lg-5 d-none d-lg-block shadow-lg ">
+                    <div><img src="img/OIP (1).jpeg" height="400px"width="400px"></div>
+                    </div>
+                <div class="col-lg-7">                  
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-primary mb-4">DEPARTMENT</h1>
                             </div>
                             <form class="user" method="post">
                             <div class="form-group row">                             
-                                    <td><?php echo $row['college_name']?></td>
+                                <input type="text" name="college_name" placeholder="COLLEGE NAME" class="form-control form-control-user shadow-lg my-2" value="<?php echo$college?>"> 
                                 </div>
                                 <div class="form-group row">
                                     <input type="text" name="department_name" placeholder="DEPARTMENT NAME" class="form-control form-control-user shadow-lg my-2"> 
@@ -54,6 +71,7 @@ if (isset($_POST['submit'])){
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

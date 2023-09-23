@@ -1,6 +1,6 @@
 <?php
 include "talenthubconnect.php";
-$data= mysqli_query($con,"select * from college where status='1'");
+$data= mysqli_query($con,"select * from college");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -252,7 +252,31 @@ $data= mysqli_query($con,"select * from college where status='1'");
                                                     <td><?php echo$row['email']?></td>
                                                     <td><?php echo$row['mobile']?></td>
                                                     <td><?php echo$row['place']?></td>
-                                                    <td><button name="submit" class="btn btn-outline-success shadow-lg my-2">APPROVED</button></td>
+                                                    <td>
+                                                        <?php
+                                                        if($row['status']==0){
+                                                            ?>
+                                                        <a href="adminapprove.php?id=<?php echo$row['college_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2" type="button">APPROVE</a>
+                                                        <a href="adminreject.php?id=<?php echo$row['college_id']?>" name="submit" class="btn btn-outline-primary shadow-lg my-2" type="button">REJECT</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                         <?php
+                                                        if($row['status']==1){
+                                                            ?>
+                                                        <a href="adminapprove.php?id=<?php echo$row['college_id']?>" name="submit" class="btn btn-outline-success shadow-lg my-2" type="button">APPROVED</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if($row['status']==2){
+                                                            ?>
+                                                        <a href="adminreject.php?id=<?php echo$row['college_id']?>" name="submit" class="btn btn-outline-danger shadow-lg my-2" type="button">REJECTED</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                     
+                                                    </td>       
                                                 </tr>
                                                     <?php
                                                 }

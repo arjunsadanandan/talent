@@ -1,6 +1,7 @@
 <?php
 include "talenthubconnect.php";
 $data= mysqli_query($con,"select * from product");
+$sql= mysqli_query($con,"select * from payment");
 function data_uri ($file, $mime) {
     $contents = file_get_contents ($file);
     $base64 = base64_encode ($contents);
@@ -245,7 +246,7 @@ function data_uri ($file, $mime) {
                                             <th>CATEGORY</th>
                                             <th>PRICE</th>
                                             <th>PRODUCT PIC</th>
-                                            <th>STATUS</th>
+                                            <th>BUY NOW</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -259,8 +260,7 @@ function data_uri ($file, $mime) {
                                                     <td><?php echo$row['category_name']?></td>
                                                     <td><?php echo$row['price']?></td>
                                                     <td><img src="img/<?php echo$row['image']?>"width="80px" hieght="40px"class="shadow-lg my-2"></td>
-                                                    <td><button name="submit" class="btn btn-outline-success shadow-lg my-2">APPROVE
-                                                    <button name="submit" class="btn btn-outline-danger shadow-lg my-2">REJECT</td>
+                                                    <td><a href="buy1.php?id=<?php echo$row['product_id']?>" class="btn btn-outline-primary shadow-lg my-2" name="submit">BUY</a></td>
                                                 </tr>
                                                     <?php
                                                 }

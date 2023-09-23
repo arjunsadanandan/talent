@@ -1,12 +1,12 @@
 <?php
 include "talenthubconnect.php";
+session_start();
 $ss=mysqli_query($con,"select * from category");
 if (isset($_POST['submit'])){
-    $student=$_POST['student_name'];
+    $stu=$_SESSION['u_name'];
     $categoryn=$_POST['category_name'];
     $product=$_POST['product_name'];
     $price=$_POST['price'];
-    $status=$_POST['status'];
     $image = $_FILES['image']['name'];
     if($image !=""){
         $filearray = pathinfo($_FILES['image']['name']);
@@ -15,9 +15,10 @@ if (isset($_POST['submit'])){
         $filenew =$file.".".$file_ext;
         move_uploaded_file($_FILES['image']['tmp_name'],"img/".$filenew);
     }
-    mysqli_query($con,"insert into payment(product_name,student_name,price,image)values('$product','$student','$price','$filenew')");
-    $bill=mysqli_insert_id($con);
-    mysqli_query($con,"insert into product(student_name,category_name,product_name,price,status,image,payment)values('$student','$categoryn','$product','$price','$status','$filenew','$bill')");  
+    $log=$_SESSION['login_id'];
+    // var_dump($log);exit();
+    mysqli_query($con,"insert into payment(product_name,student_name,price,image,status)values('$stu','$product','$price','$filenew','1')");
+    mysqli_query($con,"insert into product(category_name,student_name,product_name,price,status,image,payment,login)values('$categoryn','$stu','$product','$price','1','$filenew','1','$log')");  
 }  
 ?>
 <!DOCTYPE html>
@@ -48,10 +49,6 @@ if (isset($_POST['submit'])){
                                 <h1 class="h4 text-primary mb-4">ADD PRODUCT</h1>
                             </div>
                             <form class="user" method="post" enctype="multipart/form-data">
-                                <div class="form-group row" >
-                                    <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="STUDENT NAME" name="student_name">
-                                </div>
                                 <div class="form-group row">
                                     <tr>
                                         <td>
@@ -76,10 +73,6 @@ if (isset($_POST['submit'])){
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
                                         placeholder="PRICE" name="price">
-                                </div>
-                                <div class="form-group row">
-                                <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
-                                        placeholder="STATUS" name="status">
                                 </div>
                                 <div class="form-group row">
                                     <input type="file" class="form-control form-control-user shadow-lg my-2" name="image" >      

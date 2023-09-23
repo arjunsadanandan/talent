@@ -1,10 +1,6 @@
 <?php
 include "talenthubconnect.php";
 $pid=$_GET['id'];
-mysqli_query($con,"select * from college");
-header("location:cvpapproved.php");
-?><?php
-include "talenthubconnect.php";
 $data= mysqli_query($con,"select * from product");
 function data_uri ($file, $mime) {
     $contents = file_get_contents ($file);

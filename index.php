@@ -28,7 +28,7 @@ function data_uri ($file, $mime) {
              <!-- Nested Row within Card Body -->
             <div class="row">
                 <img src="<?php echo data_uri ('c:\xampp\htdocs\img\TalentHub-removebg-preview (2).png','image/png'); ?>"class="shadow-lg my-3" height="550px"width="1110px" alt="An imag"/>  
-                <a href="login1.php" name="submit" class="btn btn-outline-primary shadow-lg my-3">LOGIN</a>
+                <a href="login1.php" name="submit" class="btn text-white shadow-lg my-3">LOGIN</a>
             </div>      
     </div>        
     <!-- Bootstrap core JavaScript-->

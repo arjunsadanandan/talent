@@ -1,11 +1,15 @@
 <?php
 include "talenthubconnect.php";
-if(isset($_POST['submit'])){
+$pid=$_GET['id'];
+$data= mysqli_query($con,"select * from product where product_id='$pid'");
+$row=(mysqli_fetch_assoc($data));
+$product=$row['product_name'];
+$price=$row['price'];
+if(isset($_POST["update"])){
     $product=$_POST['product_name'];
-    $cate=$_POST['category_name'];
     $price=$_POST['price'];
-   $data= mysqli_query($con,"update product set product_name='$product',category_name='$cate',price='$price'where product_id='$pid'"); 
-header("location:collegeviewproduct.php"); 
+    $data=mysqli_query($con,"update product set product_name='$product',price='$price' where product_id='$pid'");
+    header("location:userviewpro.php");
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +20,7 @@ header("location:collegeviewproduct.php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>UPDATEPRODUCT</title>
+    <title>ALLPRODUCT</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -234,10 +238,10 @@ header("location:collegeviewproduct.php");
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">PRODUCT</h1>
+                    <h1 class="h3 mb-1 text-primary">PRODUCT</h1>
                     </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive shadow-lg my-2">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -246,7 +250,8 @@ header("location:collegeviewproduct.php");
                                             <th>CATEGORY</th>
                                             <th>PRICE</th>
                                             <th>PRODUCT PIC</th>
-                                            
+                                            <th>UPDATE</th>
+                                            <th>DELETE</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -256,30 +261,12 @@ header("location:collegeviewproduct.php");
                                                     ?>
                                                 <tr>
                                                     <td><?php echo$row['student_name']?></td>
-                                                    <td>
-                                                        <select name="product_id">
-                                                            <?php
-                                                            while($ro=mysqli_fetch_assoc($data)){
-                                                                ?>
-                                                                    <option value="<?php echo$ro['product_id']?>"><?php echo$ro['product_name']?></option>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <select name="category_id">
-                                                            <?php
-                                                            while($r=mysqli_fetch_assoc($data)){
-                                                                ?>
-                                                                    <option value="<?php echo$r["category_id"]?>"><?php echo$r['category_name']?></option>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </td>
+                                                    <td><?php echo$row['product_name']?></td>
+                                                    <td><?php echo$row['category_name']?></td>
                                                     <td><?php echo$row['price']?></td>
-                                                    <td><img src="img/<?php echo$row['image']?>"width="90px" hieght="90px"></td>
+                                                    <td><img src="img/<?php echo$row['image']?>"width="90px" hieght="90px" class="shadow-lg my-2"></td>
+                                                    <td><a href="cvpupdate.php?id=<?php echo$row['product_id']?>" name="update" class="btn btn-outline-primary shadow-lg my-2">UPDATE</td>
+                                                    <td><a href="cvpdelete.php?id=<?php echo$row['product_id']?>" name="del" class="btn btn-outline-danger shadow-lg my-2"type="button">DELETE</td>
                                                 </tr>
                                                     <?php
                                                 }
@@ -289,8 +276,7 @@ header("location:collegeviewproduct.php");
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <a href="admin.php" name="submit" class="btn btn-outline-primary">back</a>   
+                    </div> 
                 </div>
                 <!-- /.container-fluid -->
             </div>

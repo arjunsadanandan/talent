@@ -10,12 +10,15 @@ if (isset($_POST['submit'])){
         $type=$row['type'];
         $_SESSION['login_id']=$row['login_id'];
         if($type=="0"){
+            $_SESSION['u_name']=$user;
             echo header("location:index3.php");
         }
         if($type=="1"){
+            $_SESSION['u_name']=$user;
             echo header("location:index2.php");
         }
         if($type=="2"){
+            $_SESSION["u_name"]=$user;
             echo header("location:college.php");
         }
     }
@@ -57,11 +60,11 @@ function data_uri ($file, $mime) {
                             <form class="user" method="post">
                                 <div class="form-group row">
                                     <input type="text" class="form-control form-control-user shadow-lg my-1" id="exampleInputEmail"
-                                        placeholder="USER NAME" name="uname">
+                                        placeholder="USER NAME" name="uname" required>
                                 </div>
                                 <div class="form-group row">
                                     <input type="text" class="form-control form-control-user shadow-lg my-1" id="exampleInputEmail"
-                                        placeholder="PASSWORD" name="password">
+                                        placeholder="PASSWORD" name="password" required>
                                 </div>
                                     <tr>
                                         <td>

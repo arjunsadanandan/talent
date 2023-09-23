@@ -35,7 +35,8 @@ function data_uri ($file, $mime) {
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block">
+                    <div class="col-lg-5 d-none d-lg-block shadow-lg ">
+                    <div><img src="img/notific.webp" height="400px"width="400px"></div>
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -46,7 +47,7 @@ function data_uri ($file, $mime) {
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
                                         placeholder="Titile" name="titile">
-                                </div>  
+                                </div>
                                 <div class="form-group row">
                                 <input type="text" class="form-control form-control-user shadow-lg my-2" id="exampleInputEmail"
                                         placeholder="Description" name="content">
